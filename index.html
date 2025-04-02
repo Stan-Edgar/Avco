@@ -7,15 +7,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
-<body>
+<body class="flex justify-center p-20 gap-x-50">
+
+    <div class="flex flex-col gap-y-2">
+       <label for="">Date:  <input type="date" class="bg-[#a6acaf] p-2 rounded-xl" id="dateI"></label> 
+       <label for="">Unit: <input type="number" class="bg-[#a6acaf] p-2 rounded-xl" id="unitI"></label>
+       <label for="">Price: <input type="number" class="bg-[#a6acaf] p-2 rounded-xl" id="priceI"></label>
+       <label class="flex items-center p-2 gap-x-5">Sold: <input type="checkbox" id="sold"></label>
+
+       <div class="p-5 bg-[orange] mt-10 rounded-xl cursor-pointer" id="btn">Create</div>
+    </div>
     
     <table>
         <tbody id="table"><tr class="border-2">
-            <th class="bg-[gray] p-5 border-r-2">Date</th>
-            <th class="bg-[gray] p-5 border-r-2">Reciept</th>
-            <th class="bg-[gray] p-5 border-r-2">Issued From Stock</th>
-            <th class="bg-[gray] p-5 border-r-2">Avg Cost Per Unit</th>
-            <th class="bg-[gray] p-5 border-r-2"># of units in stock</th>
+            <th class="bg-[gray] p-5 border-r-2 h-5">Date</th>
+            <th class="bg-[gray] p-5 border-r-2 h-5">Reciept</th>
+            <th class="bg-[gray] p-5 border-r-2 h-5">Issued From Stock</th>
+            <th class="bg-[gray] p-5 border-r-2 h-5">Avg Cost Per Unit</th>
+            <th class="bg-[gray] p-5 border-r-2 h-5"># of units in stock</th>
             <th class="bg-[gray] p-5">Total Value of stock</th>
 
         </tr>

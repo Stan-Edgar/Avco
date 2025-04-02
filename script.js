@@ -2,29 +2,80 @@ const table = document.querySelector('#table');
 
 console.log("Inserted table row")
 
-const row = document.createElement('tr');
 
-const date = document.createElement('td');
-const reciept = document.createElement('td');
-const issue = document.createElement('td');
-const avgCost = document.createElement('td');
-const nOfUnits = document.createElement('td');
-const totalStockValue = document.createElement('td');
+// input variables
+const Date = document.querySelector("#dateI");
+const Unit = document.querySelector("#unitI");
+const Price = document.querySelector("#priceI");
+const sold = document.querySelector("#sold");
+const create = document.querySelector("#btn")
+// ------>
 
-date.innerHTML = "4/1/2025";
-reciept.innerHTML = "10 @ 10";
-issue.innerHTML = "";
-avgCost.innerHTML = 10;
-nOfUnits.innerHTML = 10;
-totalStockValue.innerHTML = 100; // avgCost * nOfUnits
+// Array that holds created rows
+let arr = [];
 
-row.appendChild(date);
-row.appendChild(reciept);
-row.appendChild(issue);
-row.appendChild(avgCost);
-row.appendChild(nOfUnits);
-row.appendChild(totalStockValue);
 
-row.className = "text-center";
+function createRow(DATE, RECIEPT, ISSUE, AVGCOST, NOFUNITS, TOTALSTOCKVALUE, sold, arr) {
 
-table.appendChild(row);
+    console.log("Creating row.....");
+
+    // Stops function if inputs are empty (Think python ASSERT *Lex fridman x ThePrimagen Pod Reference*)
+    if (DATE === "" || AVGCOST === "" || NOFUNITS === ""){
+        console.warn("Stopped function because of empty input(s)")
+        return
+    }
+
+    if (sold) {
+        console.log(sold);
+    }
+    
+    const row = document.createElement('tr');
+
+    const date = document.createElement('td');
+    const reciept = document.createElement('td');
+    const issue = document.createElement('td');
+    const avgCost = document.createElement('td');
+    const nOfUnits = document.createElement('td');
+    const totalStockValue = document.createElement('td');
+
+    date.innerHTML = DATE;
+    reciept.innerHTML = RECIEPT;
+    issue.innerHTML = "";
+    avgCost.innerHTML = AVGCOST;
+    nOfUnits.innerHTML = NOFUNITS;
+    totalStockValue.innerHTML = TOTALSTOCKVALUE; // avgCost * nOfUnits
+
+    row.appendChild(date);
+    row.appendChild(reciept);
+    row.appendChild(issue);
+    row.appendChild(avgCost);
+    row.appendChild(nOfUnits);
+    row.appendChild(totalStockValue);
+
+    row.className = "text-center h-10 border-t-2";
+
+    table.appendChild(row);
+
+    arr.push({
+        Date:  DATE,
+        Reciept: RECIEPT,
+        Issue: ISSUE,
+        AvgCost: AVGCOST,
+        NoOfUnits: NOFUNITS,
+        totalSV: TOTALSTOCKVALUE
+    })
+    console.log("Succseful Event");
+
+}
+
+create.addEventListener('click', function() {
+
+    const total = Unit.value * Price.value;
+    const at = `${Unit.value} @ ${Price.value}`;    
+    
+
+    createRow(Date.value, at, "", Price.value, Unit.value, total, sold.value, arr)
+});
+
+
+
