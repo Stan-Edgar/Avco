@@ -25,9 +25,6 @@ function createRow(DATE, RECIEPT, ISSUE, AVGCOST, NOFUNITS, TOTALSTOCKVALUE, sol
         return
     }
 
-    if (sold) {
-        console.log(sold);
-    }
     
     const row = document.createElement('tr');
 
@@ -38,12 +35,31 @@ function createRow(DATE, RECIEPT, ISSUE, AVGCOST, NOFUNITS, TOTALSTOCKVALUE, sol
     const nOfUnits = document.createElement('td');
     const totalStockValue = document.createElement('td');
 
-    date.innerHTML = DATE;
-    reciept.innerHTML = RECIEPT;
-    issue.innerHTML = "";
-    avgCost.innerHTML = AVGCOST;
-    nOfUnits.innerHTML = NOFUNITS;
-    totalStockValue.innerHTML = TOTALSTOCKVALUE; // avgCost * nOfUnits
+    if (sold && arr.length > 0) {
+        console.log(sold);
+        console.log(arr);
+
+        const lastArr = arr[arr.length - 1];
+        const avg = (lastArr.totalSV + (NOFUNITS * AVGCOST)) / (parseFloat(lastArr.NoOfUnits) + parseFloat(NOFUNITS));
+        console.log(NOFUNITS * AVGCOST);
+        console.log("Total Units Combined" + (lastArr.NoOfUnits + NOFUNITS))
+
+        date.innerHTML = DATE;
+        reciept.innerHTML = "";
+        issue.innerHTML = RECIEPT;
+        avgCost.innerHTML = avg;
+        nOfUnits.innerHTML = parseFloat(NOFUNITS);
+        totalStockValue.innerHTML = (avg * parseFloat(NOFUNITS)); // avgCost * nOfUnits
+    } else {
+        date.innerHTML = DATE;
+        reciept.innerHTML = RECIEPT;
+        issue.innerHTML = "";
+        avgCost.innerHTML = parseFloat(AVGCOST);
+        nOfUnits.innerHTML = parseFloat(NOFUNITS);
+        totalStockValue.innerHTML = TOTALSTOCKVALUE; // avgCost * nOfUnits
+    }
+
+   
 
     row.appendChild(date);
     row.appendChild(reciept);
